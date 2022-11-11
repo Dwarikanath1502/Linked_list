@@ -1,5 +1,3 @@
-// TODO: REVERSE LINKED LIST IN K GROUP
-
 #include <iostream>
 using namespace std;
 
@@ -18,17 +16,18 @@ void push(Node **head_ref, int data)
     (*head_ref) = new_node;
 }
 
-Node *reverse(Node *head, int k)
+Node *Kreverse(Node *head, int k)
 {
     // base case
-    if (head == NULL)
+    if (!head)
     {
         return NULL;
     }
     Node *current = head;
-    Node *next = NULL;
     Node *prev = NULL;
+    Node *next = NULL;
     int count = 0;
+    // reverrse k node in linked list
     while (current != NULL && count < k)
     {
         next = current->next;
@@ -38,10 +37,12 @@ Node *reverse(Node *head, int k)
         current = next;
         count = count + 1;
     }
+
     if (next != NULL)
     {
-        head->next = reverse(next, k);
+        head->next = Kreverse(next, k);
     }
+    // prev is now head of the list
     return prev;
 }
 
@@ -65,7 +66,7 @@ int main()
     push(&head, 60);
     print(head);
     cout << "\nReversed linked list: " << endl;
-    head = reverse(head, 3);
+    head = Kreverse(head, 3);
     print(head);
     return 0;
 }
