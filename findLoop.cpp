@@ -92,15 +92,15 @@ int main()
     head->next->next->next = head->next;
     if (findLoop(head) != NULL)
     {
-        cout << "\nLoop is present" << endl;
+        cout << "\nCycle is present" << endl;
     }
     else
     {
-        cout << "Loop is not present" << endl;
+        cout << "Cycle is not present" << endl;
     }
-    cout << "starting at: " << findStart(head)->data << endl;
+    cout << "cycle starting at: " << findStart(head)->data << endl;
     removeLoop(head);
-     if (findLoop(head) != NULL)
+    if (findLoop(head) != NULL)
     {
         cout << "\nLoop is present" << endl;
     }
@@ -108,6 +108,5 @@ int main()
     {
         cout << "Loop is not present" << endl;
     }
-    cout << "starting at: " << findStart(head)->data << endl;
     return 0;
 }
