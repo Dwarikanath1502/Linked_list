@@ -17,28 +17,24 @@ void push(Node **head_ref, int data)
     new_node->next = (*head_ref);
     (*head_ref) = new_node;
 }
-// TODO: removes duplicate
-Node *removeDuplicate(Node *head)
+
+Node *moveElement(Node **head_ref)
 {
-    Node *temp;
-    if (head == NULL)
+    if ((*head_ref) == NULL || (*head_ref)->next == NULL)
     {
         return NULL;
     }
-    if (head->next != NULL)
+    Node* secLast = NULL;
+    Node* last = (*head_ref);
+    while (last->next!=NULL)
     {
-        if ( head->data == head->next->data)
-        {
-            temp = head->next;
-            head->next = head->next->next;
-            free(temp);
-            removeDuplicate(head);
-        }
-        else
-        {
-            removeDuplicate(head->next);
-        }
+        secLast = last;
+        last = last->next;
     }
+    secLast->next = NULL;
+    last->next = (*head_ref);
+    (*head_ref) = last;
+    
 }
 
 void printList(Node *head)
@@ -54,14 +50,12 @@ int main()
 {
     Node *head = NULL;
     push(&head, 10);
-    push(&head, 10);
     push(&head, 20);
-    push(&head, 30);
     push(&head, 30);
     push(&head, 40);
     printList(head);
-    cout<<"\nAfter removing duplicates: "<<endl;
-    removeDuplicate(head);
+    cout << "\nAfter moving: " << endl;
+    moveElement(&head);
     printList(head);
     return 0;
 }
