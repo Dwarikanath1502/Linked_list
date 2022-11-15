@@ -81,6 +81,7 @@ bool isPalindrome(Node *head)
         head1 = head1->next;
         head2 = head2->next;
     }
+    // make LL as previous
     temp = middle->next;
     middle->next = reverse(temp);
 
