@@ -16,7 +16,6 @@ void push(Node **head_ref, int data)
     new_node->data = data;
     new_node->next = (*head_ref);
     Node *temp = (*head_ref);
-
     if ((*head_ref) != NULL)
     {
         while (temp->next != (*head_ref))
@@ -29,18 +28,17 @@ void push(Node **head_ref, int data)
     {
         new_node->next = new_node;
     }
+
     (*head_ref) = new_node;
 }
 
-
-
 bool isCircular(Node *head)
 {
-    if (head== NULL)
+    if (head == NULL)
     {
         return 1;
     }
-    Node *temp = head->next;
+    Node *temp = head;
     while (temp != NULL && temp != head)
     {
         temp = temp->next;
@@ -65,8 +63,6 @@ void printList(Node *head)
     } while (temp != head);
 }
 
-
-
 int main()
 {
     Node *head = NULL;
@@ -78,9 +74,11 @@ int main()
     printList(head);
     if (isCircular(head))
     {
-        cout<<"\nit is circular"<<endl;
-    }else{
-        cout<<"\nNot circular"<<endl;
-    }  
+        cout << "\nit is circular" << endl;
+    }
+    else
+    {
+        cout << "\nNot circular" << endl;
+    }
     return 0;
 }
