@@ -35,33 +35,59 @@ Node *reverseList(Node *head)
     }
     head = prev;
 }
-// TODO: ADD 1 TO THE LINK LIST
-Node *addOne(Node *head)
-{
+
+Node* addOne(Node* head){
     head = reverseList(head);
     int carry = 1;
-    Node *current = head;
+    Node* current = head;
     while (carry)
     {
-        current->data += 1;
+        current->data +=1;
         if (current->data < 10)
         {
             return reverseList(head);
-        }
-        else
-        {
+        }else{
             current->data = 0;
         }
         if (current->next == NULL)
         {
             return 0;
-        }
-        else
-        {
+        }else{
             current = current->next;
         }
+        
+            
     }
+    
 }
+
+// TODO: ADD 1 TO THE LINK LIST
+// Node *addOne(Node *head)
+// {
+//     head = reverseList(head);
+//     int carry = 1;
+//     Node *current = head;
+//     while (carry)
+//     {
+//         current->data += 1;
+//         if (current->data < 10)
+//         {
+//             return reverseList(head);
+//         }
+//         else
+//         {
+//             current->data = 0;
+//         }
+//         if (current->next == NULL)
+//         {
+//             return 0;
+//         }
+//         else
+//         {
+//             current = current->next;
+//         }
+//     }
+// }
 
 
 void printList(Node *head)
@@ -77,8 +103,8 @@ int main()
 {
     Node *head = NULL;
     push(&head, 1);
-    push(&head, 0);
-    push(&head, 9);
+    // push(&head, 0);
+    push(&head, 2);
     printList(head);
     head = reverseList(head);
     cout << endl
