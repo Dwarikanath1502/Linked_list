@@ -72,6 +72,24 @@ int countNode(Node *head)
     return count;
 }
 
+void reverseList(Node **head)
+{
+    Node *prev = NULL;
+    Node *next = NULL;
+    Node *current = *head;
+
+    while (current != NULL)
+    {
+        next = current->next;
+        current->next = prev;
+
+        // update pointers
+        prev = current;
+        current = next;
+    }
+    *head = prev;
+}
+
 // print linked list
 void printList(Node *head)
 {
@@ -94,11 +112,15 @@ int main()
     // node will be inserted at the second place but Head node
     insertAt(head, 100);
     printList(head);
-    cout << endl
-         << "Linked list after deleting the element..." << endl;
-    deleteNode(&head->next, 100);
-    printList(head);
+    // cout << endl
+    //      << "Linked list after deleting the element..." << endl;
+    // deleteNode(&head->next, 100);
+    // printList(head);
     cout << endl
          << "Total number of elements in the linked list is:" << countNode(head);
+    reverseList(&head);
+    cout << endl
+         << "Linked list after reversing: " << endl;
+    printList(head);
     return 0;
 }
