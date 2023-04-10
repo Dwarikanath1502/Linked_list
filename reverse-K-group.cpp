@@ -18,33 +18,33 @@ void push(Node **head_ref, int data)
 
 Node *Kreverse(Node *head, int k)
 {
-    // base case
-    if (!head)
+    if (head == NULL)
     {
         return NULL;
     }
-    Node *current = head;
+    // initialise values
     Node *prev = NULL;
     Node *next = NULL;
+    Node *current = head;
     int count = 0;
-    // reverrse k node in linked list
+
     while (current != NULL && count < k)
     {
         next = current->next;
         current->next = prev;
 
+        // update pointers
         prev = current;
         current = next;
         count = count + 1;
     }
-
     if (next != NULL)
     {
         head->next = Kreverse(next, k);
     }
-    // prev is now head of the list
     return prev;
 }
+
 
 void print(Node *head)
 {
