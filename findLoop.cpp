@@ -43,11 +43,10 @@ Node *findLoop(Node *head)
 // TODO: find starting node of loop
 Node *findStart(Node *head)
 {
-    if (head == NULL)
+    if (!head)
     {
         return NULL;
     }
-
     Node *intersection = findLoop(head);
     Node *slow = head;
     while (slow != intersection)
@@ -57,6 +56,7 @@ Node *findStart(Node *head)
     }
     return slow;
 }
+
 // TODO: remove loop
 Node *removeLoop(Node *head)
 {
@@ -66,12 +66,14 @@ Node *removeLoop(Node *head)
     }
     Node *startOfLoop = findStart(head);
     Node *temp = startOfLoop;
+
     while (temp != startOfLoop)
     {
         temp = temp->next;
     }
     temp->next = NULL;
 }
+// print linked list
 void print(Node *head)
 {
     while (head != NULL)
