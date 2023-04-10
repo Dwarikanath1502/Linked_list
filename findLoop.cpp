@@ -18,7 +18,7 @@ void push(Node **head_ref, int data)
 // TODO: find loop
 Node *findLoop(Node *head)
 {
-    if (head == NULL)
+    if (!head)
     {
         return NULL;
     }
@@ -34,12 +34,12 @@ Node *findLoop(Node *head)
         }
         if (slow == fast)
         {
-            // cout<<"Loop is present at: "<<slow->data;
             return slow;
         }
     }
     return NULL;
 }
+
 // TODO: find starting node of loop
 Node *findStart(Node *head)
 {
