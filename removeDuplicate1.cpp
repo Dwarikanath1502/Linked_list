@@ -18,12 +18,12 @@ void push(Node **head_ref, int data)
     (*head_ref) = new_node;
 }
 // TODO: removes duplicate
-Node *removeDuplicate(Node *head)
+void removeDuplicate(Node *head)
 {
     Node *temp;
     if (head == NULL)
     {
-        return NULL;
+        return;
     }
     if (head->next != NULL)
     {

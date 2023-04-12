@@ -1,5 +1,5 @@
 // TODO: ADD TEO NUMBERS REPRESENTED BY LINKED LIST
-// FIXME: 
+// FIXME:
 #include <iostream>
 using namespace std;
 
@@ -38,23 +38,24 @@ Node *reverse(Node *head)
     head = prev;
 }
 
-Node* add(Node* first, Node* second){
-    int carry =0 ;
-    while (first!=NULL && second!=NULL)
+Node *add(Node *first, Node *second)
+{
+    int carry = 0;
+    while (first != NULL && second != NULL)
     {
         int sum = carry + first->data + second->data;
     }
-    
 }
 
-Node* addList(Node* first, Node* second){
+Node *addList(Node *first, Node *second)
+{
     // step 1: reverse input of linked list
     first = reverse(first);
     second = reverse(second);
     // step 2: add two linked list
-    Node* ans = add(first, second);
+    Node *ans = add(first, second);
     // step 3: reverse ans to get final ans
-    ans = reverse(ans); 
+    ans = reverse(ans);
     return ans;
 }
 
@@ -69,11 +70,23 @@ void printList(Node *head)
 
 int main()
 {
-    Node *head = NULL;
-    push(&head, 1);
-    push(&head, 2);
-    push(&head, 3);
-    printList(head);
+    Node *head1 = NULL;
+    push(&head1, 1);
+    push(&head1, 2);
+    push(&head1, 3);
+    cout << "Node 1: " << endl;
+    printList(head1);
 
+    Node *head2 = NULL;
+    push(&head2, 1);
+    push(&head2, 2);
+    push(&head2, 3);
+    cout << endl
+         << "Node 2: " << endl;
+    printList(head2);
+    cout <<endl<< "SUM: " << endl;
+    Node *sum = NULL;
+    sum = addList(head1, head2);
+    printList(sum);
     return 0;
 }
