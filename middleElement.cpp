@@ -94,16 +94,41 @@ int countElement(Node *head)
     return count;
 }
 
-int middleElement(Node *head)
+
+// TODO: FIRST APPROACH
+// int middleElement(Node *head)
+// {
+//     int total = countElement(head);
+//     int midIndex = total / 2;
+//     Node *temp = head;
+//     while (midIndex--)
+//     {
+//         temp = temp->next;
+//     }
+//     cout << "\nMiddle of the element is: " << temp->data << endl;
+// }
+
+
+// TODO: SECOND APPROACH
+void middleElement(Node *head)
 {
-    int total = countElement(head);
-    int midIndex = total / 2;
-    Node *temp = head;
-    while (midIndex--)
+    Node *slow = head;
+    Node *fast = head;
+    if (head == NULL)
     {
-        temp = temp->next;
+        return;
     }
-    cout << "\nMiddle of the element is: " << temp->data << endl;
+
+    while (fast !=NULL  && fast->next !=NULL ) // fast && fast->next
+    {
+        slow = slow->next;
+        fast = fast->next;
+        if (fast != NULL)
+        {
+            fast = fast->next;
+        }
+    }
+    cout<<endl<<"Middle element is: "<<slow->data<<" ";
 }
 
 void printList(Node *head)
@@ -121,8 +146,12 @@ int main()
     push(&head, 10);
     push(&head, 20);
     push(&head, 30);
+    push(&head, 40);
+    push(&head, 50);
     printList(head);
     cout << "\nTotal element is : " << countElement(head);
-    middleElement(head);
+     middleElement(head);
+    
     return 0;
+
 }
