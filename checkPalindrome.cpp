@@ -101,8 +101,10 @@ int main()
 {
     Node *head = NULL;
     push(&head, 10);
+    push(&head, 10);
     push(&head, 20);
     push(&head, 20);
+    push(&head, 10);
     push(&head, 10);
     printList(head);
     if (isPalindrome(head))
