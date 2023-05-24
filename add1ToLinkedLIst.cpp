@@ -1,3 +1,5 @@
+// TODO: Add 1 to linked list
+
 #include <iostream>
 using namespace std;
 
@@ -8,88 +10,13 @@ public:
     Node *next;
 };
 
-void push(Node **head_ref, int data)
+Node *insert(Node **head_ref, int data)
 {
     Node *new_node = new Node();
     new_node->data = data;
     new_node->next = (*head_ref);
     (*head_ref) = new_node;
 }
-// TODO: REVERSE THE LINK LIST
-Node *reverseList(Node *head)
-{
-    if (head == NULL)
-    {
-        return 0;
-    }
-    Node *current = head;
-    Node *prev = NULL;
-    Node *next = NULL;
-
-    while (current != NULL)
-    {
-        next = current->next;
-        current->next = prev;
-        prev = current;
-        current = next;
-    }
-    head = prev;
-}
-
-Node *addOne(Node *head)
-{
-    head = reverseList(head);
-    int carry = 1;
-    Node *current = head;
-    while (carry)
-    {
-        current->data += 1;
-        if (current->data < 10)
-        {
-            return reverseList(head);
-        }
-        else
-        {
-            current->data = 0;
-        }
-        if (current->next == NULL)
-        {
-            return 0;
-        }
-        else
-        {
-            current = current->next;
-        }
-    }
-}
-
-// TODO: ADD 1 TO THE LINK LIST
-// Node *addOne(Node *head)
-// {
-//     head = reverseList(head);
-//     int carry = 1;
-//     Node *current = head;
-//     while (carry)
-//     {
-//         current->data += 1;
-//         if (current->data < 10)
-//         {
-//             return reverseList(head);
-//         }
-//         else
-//         {
-//             current->data = 0;
-//         }
-//         if (current->next == NULL)
-//         {
-//             return 0;
-//         }
-//         else
-//         {
-//             current = current->next;
-//         }
-//     }
-// }
 
 void printList(Node *head)
 {
@@ -100,20 +27,63 @@ void printList(Node *head)
     }
 }
 
-int main()
+Node *reverseList(Node *head)
+{
+
+    Node *current = head;
+    Node *next = NULL;
+    Node *prev = NULL;
+    while (current != NULL)
+    {
+        next = current->next;
+        current->next = prev;
+
+        prev = current;
+        current = next;
+    }
+    head = prev;
+    return head;
+}
+
+Node *addUtil(Node *head)
+{
+    Node *result = head;
+    Node *temp, *prev = NULL;
+    int carry = 1, sum;
+
+    while (head != NULL)
+    {
+        sum = carry + (head ? head->data : 0);
+        carry = sum > 10 ? 1 : 0;
+        sum = sum % 10;
+        head->data = sum;
+        temp = head;
+        head = head->next;
+    }
+    if (carry > 0)
+    {
+        temp->next = insert(&head, carry);
+    }
+    return result;
+}
+
+Node *addOne(Node *head)
+{
+    // reverse linked list
+    head = reverseList(head);
+
+    head = addUtil(head);
+
+    return reverseList(head);
+}
+
+int main(int argc, char const *argv[])
 {
     Node *head = NULL;
-    push(&head, 1);
-    // push(&head, 0);
-    push(&head, 2);
-    printList(head);
-    head = reverseList(head);
-    cout << endl
-         << "reversed list..." << endl;
-    printList(head);
+    insert(&head, 5);
+    insert(&head, 4);
+
     head = addOne(head);
-    cout << endl
-         << "Result after adding One: " << endl;
     printList(head);
     return 0;
 }
