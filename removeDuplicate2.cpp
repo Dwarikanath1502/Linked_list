@@ -1,5 +1,5 @@
-                // FIXME:
-                // ?TODO: DO IT.
+// FIXME:
+// ?TODO: DO IT.
 
 #include <iostream>
 using namespace std;
@@ -19,24 +19,24 @@ void push(Node **head_ref, int data)
     (*head_ref) = new_node;
 }
 
-Node *removeDupicate(Node *head)
+void removeDupicate(Node *head)
 {
+    // pointer to traverse linked list
     Node *current = head;
-    while (current != NULL)
+    if (current == NULL || current->next == NULL)
     {
-        // Node* temp = current->next;
-        while (current->next != NULL)
+        return;
+    }
+    while (current->next != NULL)
+    {
+        if (current->data == current->next->data)
         {
-            if (current->data == current->next->data)
-            {
-                Node *temp = current->next;
-                current->next = current->next->next;
-                free(temp);
-            }
-            else
-            {
-                current->next = current->next->next;
-            }
+            Node *temp = current->next;
+            current->next = current->next->next;
+            free(temp);
+        }
+        else
+        {
             current = current->next;
         }
     }
@@ -63,5 +63,6 @@ int main()
     print(head);
     cout << "\nAfter Removing: " << endl;
     removeDupicate(head);
+    print(head);
     return 0;
 }
