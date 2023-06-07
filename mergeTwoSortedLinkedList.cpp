@@ -1,6 +1,6 @@
 // TODO: merge two sorted linked list here creating problem 
 /*
-    CODE WORKING FINE ON GFG PRATICE
+    CODE WORKING FINE ON GFG PRATICE    
 */
 
 
