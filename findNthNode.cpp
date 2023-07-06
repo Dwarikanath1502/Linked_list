@@ -33,24 +33,34 @@ int NthNode(Node *head, int n)
 {
     Node *temp = head;
     int count = length(head);
+    // Base case: if we try to find the node that don't exists
     if (count < n)
     {
         return -1;
     }
-    // TODO:   BOTHAPPRACHES ARE CORRECT
-    // count = count - n;
-    // for (int i = 0; i < count; i++)
-    // {
-    //     temp = temp->next;
-    // }
-    // return temp->data;
-    count = count - n + 1;
-    for (int i = 1; i < count; i++)
+    count = count - 1;
+    for (int i = 0; i < count; i++)
     {
         temp = temp->next;
     }
     return temp->data;
 }
+
+// int NthNode(Node *head, int n)
+// {
+//     Node *temp = head;
+//     int count = length(head);
+//     if (count < n)
+//     {
+//         return -1;
+//     }
+//     count = count - n + 1;
+//     for (int i = 1; i < count; i++)
+//     {
+//         temp = temp->next;
+//     }
+//     return temp->data;
+// }
 
 void printList(Node *node)
 {
