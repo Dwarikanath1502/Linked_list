@@ -33,11 +33,12 @@ Node *Kreverse(Node *head, int k)
         next = current->next;
         current->next = prev;
 
-        // update pointers
+        // update pointer
         prev = current;
         current = next;
         count = count + 1;
     }
+    //    check if next is not null
     if (next != NULL)
     {
         head->next = Kreverse(next, k);
@@ -45,13 +46,13 @@ Node *Kreverse(Node *head, int k)
     return prev;
 }
 
-
 void print(Node *head)
 {
-    while (head != NULL)
+    Node* current = head;
+    while (current != NULL)
     {
-        cout << head->data << " ";
-        head = head->next;
+        cout << current->data << " ";
+        current = current->next;
     }
 }
 
@@ -63,7 +64,7 @@ int main()
     push(&head, 30);
     push(&head, 40);
     push(&head, 50);
-    push(&head, 60);
+    cout<<"List before reversal in k Group: ";
     print(head);
     cout << "\nReversed linked list: " << endl;
     head = Kreverse(head, 3);
