@@ -1,6 +1,6 @@
-        // TODO: REVERSE THE LINKED LIST
+// TODO: WAP TO REVERSE THE LINKED LIST
 
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Node
@@ -10,6 +10,7 @@ public:
     Node *next;
 };
 
+// method to push element to the list
 void push(Node **head_ref, int data)
 {
     Node *new_node = new Node();
@@ -18,23 +19,27 @@ void push(Node **head_ref, int data)
     (*head_ref) = new_node;
 }
 
-Node* reverseList(Node *head)
+// reverse the list
+Node *reverseList(Node *head)
 {
     Node *current = head;
-    Node *next = NULL;
     Node *prev = NULL;
-    while (current!= NULL)
+    Node *next = NULL;
+
+    while (current != NULL)
     {
         next = current->next;
         current->next = prev;
 
+        // update pointer
         prev = current;
         current = next;
     }
-    head = prev;
+    return prev;
 }
 
-void print(Node *head)
+// print list
+void printList(Node *head)
 {
     while (head != NULL)
     {
@@ -45,15 +50,16 @@ void print(Node *head)
 
 int main()
 {
-    Node *head = NULL;
-    push(&head, 10);
-    push(&head, 20);
-    push(&head, 30);
-    push(&head, 40);
-    push(&head, 50);
-    print(head);
-    cout<<"\nReversed linked list: "<<endl;
+    Node* head = NULL;
+    push(&head, 1);
+    push(&head, 2);
+    push(&head, 3);
+    push(&head, 4);
+    push(&head, 5);
+    cout<<"List before reversing: ";
+    printList(head);
     head = reverseList(head);
-    print(head);
+    cout<<endl<<"List after reversing: ";
+    printList(head);
     return 0;
 }
