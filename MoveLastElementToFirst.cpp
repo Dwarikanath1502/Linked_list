@@ -18,11 +18,12 @@ void push(Node **head_ref, int data)
     (*head_ref) = new_node;
 }
 
-Node *moveElement(Node **head_ref)
+void moveElement(Node **head_ref)
 {
+
     if ((*head_ref) == NULL || (*head_ref)->next == NULL)
     {
-        return NULL;
+        return;
     }
     Node *secLast = NULL;
     Node *last = (*head_ref);
@@ -39,10 +40,11 @@ Node *moveElement(Node **head_ref)
 
 void printList(Node *head)
 {
-    while (head != NULL)
+    Node *current = head;
+    while (current != NULL)
     {
-        cout << head->data << " ";
-        head = head->next;
+        cout << current->data << " ";
+        current = current->next;
     }
 }
 
