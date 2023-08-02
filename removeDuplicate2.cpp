@@ -1,5 +1,4 @@
-// FIXME:
-// ?TODO: DO IT.
+//TODO: REMOVE DUPLICATE FROM SORTED LIST
 
 #include <iostream>
 using namespace std;
@@ -23,15 +22,18 @@ void removeDupicate(Node *head)
 {
     // pointer to traverse linked list
     Node *current = head;
+
     if (current == NULL || current->next == NULL)
     {
         return;
     }
+
     while (current->next != NULL)
     {
         if (current->data == current->next->data)
         {
             Node *temp = current->next;
+
             current->next = current->next->next;
             free(temp);
         }
@@ -55,11 +57,10 @@ int main()
 {
     Node *head = NULL;
     push(&head, 10);
-    push(&head, 40);
-    push(&head, 30);
-    push(&head, 30);
     push(&head, 10);
     push(&head, 20);
+    push(&head, 20);
+    push(&head, 30);
     print(head);
     cout << "\nAfter Removing: " << endl;
     removeDupicate(head);
