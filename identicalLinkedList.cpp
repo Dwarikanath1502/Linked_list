@@ -1,12 +1,27 @@
-// TODO: to check whether two linked list are identical or not
+// TODO: ch3eck wheather two lists are idfentical
+
+/*
+Two Linked Lists are identical when they have the same data and the arrangement of data is also the same. Write a function to check if the given two linked lists are identical.
+
+Examples:
+
+Input: a = 1->2->3->4,
+       b = 1->2->3->4
+Output: Identical
+
+Input: a = 1->3->5->2,
+       b = 1->3->4->6
+Output: Not Identical
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
 class Node
 {
 public:
-    Node *next;
     int data;
+    Node *next;
 };
 
 void push(Node **head_ref, int data)
@@ -17,54 +32,65 @@ void push(Node **head_ref, int data)
     (*head_ref) = new_node;
 }
 
-void printlist(Node *head)
+// method to check wheather lists are identical or not
+bool isIdentical(Node *head1, Node *head2)
 {
-    while (head != NULL)
-    {
-        cout << head->data << " ";
-        head = head->next;
-    }
-}
-
-bool isIdentical(Node *list1, Node *list2)
-{
-    if (list1 == NULL && list2 == NULL)
+    // BASE CASE: if both is null
+    if ((head1 == NULL) && (head2 == NULL))
     {
         return true;
     }
-    while (list1 != NULL && list2 != NULL)
+
+    // loop through both the list and find wather they are same
+    while (head1 != NULL && head2 != NULL)
     {
-        if (list1->data != list2->data)
+        if (head1->data != head2->data)
         {
             return false;
         }
-        list1 = list1->next;
-        list2 = list2->next;
+        head1 = head1->next;
+        head2 = head2->next;
     }
+
     // return true;
-    return (list1 == NULL && list2 == NULL);
+
+    return (head1 == NULL && head2 == NULL);
+}
+
+void printList(Node *head)
+{
+    Node *current = head;
+    while (current != NULL)
+    {
+        cout << current->data << " ";
+        current = current->next;
+    }
 }
 
 int main()
 {
-    Node *list1 = NULL;
-    Node *list2 = NULL;
-    push(&list1, 1);
-    push(&list1, 2);
-    push(&list1, 3);
-    push(&list2, 1);
-    push(&list2, 2);
-    push(&list2, 3);
-    printlist(list1);
-    printlist(list2);
-    if (isIdentical(list1, list2))
+    Node *head1 = NULL;
+    Node *head2 = NULL;
+    push(&head1, 1);
+    push(&head1, 2);
+    push(&head1, 3);
+    push(&head2, 1);
+    push(&head2, 2);
+    push(&head2, 3);
+    cout << "Elements of first list is : ";
+    printList(head1);
+    cout << endl
+         << "Elements of second list is : ";
+    printList(head2);
+    if (isIdentical(head1, head2))
     {
         cout << endl
              << "Both the lists are Identical...";
     }
     else
     {
-        cout << "Not identical..." << endl;
+        cout << endl
+             << "Lists are not identical...";
     }
 
     return 0;
