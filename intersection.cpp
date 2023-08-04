@@ -30,7 +30,7 @@ void push(Node **head_ref, int data)
 
 vector<int> intersection(Node *head1, Node *head2, int k)
 {
-    vector<int> res(k);
+    vector<int> result(k);
     unordered_set<int> set;
 
     while (head1 != NULL)
@@ -38,20 +38,44 @@ vector<int> intersection(Node *head1, Node *head2, int k)
         set.insert(head1->data);
         head1 = head1->next;
     }
-
-    // to keep track of element in res array
+    // this varible will help to move to next index in the vector
     int count = 0;
     while (head2 != NULL)
     {
         if (set.find(head2->data) != set.end())
         {
-            res[count] = head2->data;
-            count++;
+            result[count++] = head2->data;
+            // count++;
         }
         head2 = head2->next;
     }
-    return res;
+    return result;
 }
+
+// vector<int> intersection(Node *head1, Node *head2, int k)
+// {
+//     vector<int> res(k);
+//     unordered_set<int> set;
+
+//     while (head1 != NULL)
+//     {
+//         set.insert(head1->data);
+//         head1 = head1->next;
+//     }
+
+//     // to keep track of element in res array
+//     int count = 0;
+//     while (head2 != NULL)
+//     {
+//         if (set.find(head2->data) != set.end())
+//         {
+//             res[count] = head2->data;
+//             count++;
+//         }
+//         head2 = head2->next;
+//     }
+//     return res;
+// }
 
 void printList(Node *head)
 {
