@@ -2,7 +2,6 @@
 
 // NOTE: HERE GETTING SEGMENTATION FAULT BUT HT ECODE IS ABSOLUTELY RIGHT AND RUNNING ON GFG
 
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -40,6 +39,15 @@ int getNthFromLast(Node *head, int n)
     return temp1->data;
 }
 
+void printList(Node *head)
+{
+    while (head != NULL)
+    {
+        cout << head->data << " ";
+        head = head->next;
+    }
+}
+
 int main()
 {
     Node *head = NULL;
@@ -48,7 +56,9 @@ int main()
     push(&head, 3);
     push(&head, 4);
     push(&head, 5);
-    int k = 2;
-    cout << "kth node from end of the linked list is : " << getNthFromLast(head, k);
+    printList(head);
+    int k = 1;
+    cout << endl
+         << "kth node from end of the linked list is : " << getNthFromLast(head, k);
     return 0;
 }
