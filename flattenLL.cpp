@@ -33,8 +33,16 @@ Output: 3->7->9->10->14->15->17->22->30->47
 
 // APPROACH:
     compare two linked from from last using recusion and merge then and so on until all lists are merged
-    TimeComplexity: as we are traversing through all the nodes so summation of all the nodes will be time complexity O(summation of all nodes)
+    TimeComplexity: as we are traversing through all the nodes so summation of all the nodes
+    will be time complexity O(summation of all nodes)
     SpaceComplexity: O(1)
+
+    Considering the dominant term, which is O(N), the overall time complexity of the given code is O(N).
+
+The space complexity of the code is O(1), as it only uses a constant amount of extra space for
+variables and temporary nodes regardless of the input size.
+
+
 */
 
 #include <bits/stdc++.h>
