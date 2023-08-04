@@ -54,17 +54,13 @@ public:
     }
 };
 
-// method to merge two list of the flatten linked list
-Node *mergeTwoList(Node *first, Node *second)
+Node *merge(Node *first, Node *second)
 {
     if (first == NULL)
-    {
         return second;
-    }
     if (second == NULL)
-    {
         return first;
-    }
+
     Node *ans = new Node(-1);
     Node *temp = ans;
 
@@ -82,32 +78,33 @@ Node *mergeTwoList(Node *first, Node *second)
         }
         temp = temp->bottom;
     }
+    // if first or second have more element
     if (first != NULL)
     {
         temp->bottom = first;
     }
-    if (second != NULL)
+    else
     {
         temp->bottom = second;
     }
+    // becausfirst element of ans is -1
     ans = ans->bottom;
     return ans;
 }
 
-// method to flatten linked list
 Node *flatten(Node *root)
 {
-    // base case: if there is no node then return null else root->next element is NULL then return node to prev
+    // BASE CASE:
     if (root == NULL || root->next == NULL)
     {
         return root;
     }
-    // right recursion for merging the elemnt
+
+    // right recusion to list so that it merges two end list
     root->next = flatten(root->next);
 
-    // merge root and and root->next element
-    root = mergeTwoList(root, root->next);
-    // return root
+    // merge root and root->next and return merged list to root
+    root = merge(root, root->next);
     return root;
 }
 
