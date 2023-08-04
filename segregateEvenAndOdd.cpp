@@ -1,4 +1,4 @@
-// TODO: , write a function to modify the linked list such that all even numbers appear before all the 
+// TODO: , write a function to modify the linked list such that all even numbers appear before all the
 // odd numbers in the modified linked list. Also, keep the order of even and odd numbers the same.
 
 #include <iostream>
@@ -30,16 +30,20 @@ void printList(Node *node)
 
 void segregate(Node **head_ref)
 {
+    // we are creating even and odd start so that we can add then at theend of another to make them a single list
     Node *evenStart = NULL;
     Node *evenEnd = NULL;
     Node *oddStart = NULL;
     Node *oddEnd = NULL;
     Node *current = (*head_ref);
 
+    // loop thropugh all the elemnts of list
     while (current != NULL)
     {
-        int val = current->data;
-        if (val % 2 == 0)
+        int val = current->data % 2;
+
+        // check if current->data is even then push to even list else push to odd list
+        if (val == 0)
         {
             if (evenStart == NULL)
             {
@@ -65,12 +69,9 @@ void segregate(Node **head_ref)
                 oddEnd = oddEnd->next;
             }
         }
+        // now allthe even elements are in the even list and odd elements are in the odd list
 
         current = current->next;
-    }
-    if (oddStart == NULL || evenStart == NULL)
-    {
-        return;
     }
     evenEnd->next = oddStart;
     oddEnd->next = NULL;
