@@ -32,7 +32,7 @@ void push(Node **head_ref, int value)
     (*head_ref) = new_node;
 }
 
-/*TODO: It will take time complexity of O(n2)*/
+// method to remove duplicates from unsortedlinked list
 
 Node *removeDuplicate(Node *head)
 {
