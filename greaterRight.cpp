@@ -25,54 +25,54 @@ void push(Node **head_ref, int value)
     new_node->next = (*head_ref);
     (*head_ref) = new_node;
 }
-
 Node *reverse(Node *head)
 {
+    // if there is no element
     if (head == NULL)
     {
         return head;
     }
+
     Node *prev = NULL;
-    Node *next = NULL;
     Node *current = head;
+    Node *next = current->next;
 
     while (current != NULL)
     {
         next = current->next;
         current->next = prev;
 
-        // update popinter
+        // update pointer
         prev = current;
         current = next;
     }
     return prev;
 }
-
 Node *deleteLeftHavingLargerOnRight(Node *head)
 {
     head = reverse(head);
-    int maxElement = head->data;
     Node *current = head;
     Node *prev = head;
+    int maxElement = current->data;
     head = head->next;
-    while (head != NULL)
+
+    while (head)
     {
-        if (head->data >= maxElement)
+        if (head->data > maxElement)
         {
             maxElement = head->data;
             prev = head;
-            head = head->next; // prev->next
+            head = head->next;
         }
         else
         {
             prev->next = head->next;
-            head = prev->next;
+            head = head->next; // or prev->next as it is same same
         }
     }
     head = reverse(current);
     return head;
 }
-
 void printList(Node *head)
 {
     while (head != NULL)
