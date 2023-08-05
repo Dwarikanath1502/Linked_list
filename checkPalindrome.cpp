@@ -60,31 +60,35 @@ Node *reverse(Node *head)
 
 bool isPalindrome(Node *head)
 {
+    //   BASE CASE: if there is only one node then it is palindrome
     if (head->next == NULL)
     {
         return true;
     }
-    //    step1 : get mid element;
-    Node *middle = getMid(head);
-    // step2: reverse elements after mid-element
-    Node *temp = middle->next;
-    middle->next = reverse(temp);
-    // step3: COMPARE BOTH HALVES
+    Node *slow = head;
+    Node *fast = head;
+
+    while (fast != NULL && fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next;
+    }
+    Node *temp = slow->next;
+    slow->next = reverse(temp);
+
     Node *head1 = head;
     Node *head2 = temp;
+
     while (head2 != NULL)
     {
         if (head1->data != head2->data)
         {
-            return 0;
+            return false;
         }
         head1 = head1->next;
         head2 = head2->next;
     }
-    // make LL as previous
-    temp = middle->next;
-    middle->next = reverse(temp);
-
+    // slow->next = reverse(temp);
     return true;
 }
 
@@ -109,11 +113,13 @@ int main()
     printList(head);
     if (isPalindrome(head))
     {
-        cout << endl<< "It is palindrome" << endl;
+        cout << endl
+             << "It is palindrome" << endl;
     }
     else
     {
-        cout << endl<< "It is not palindrome" << endl;
+        cout << endl
+             << "It is not palindrome" << endl;
     }
 
     return 0;
