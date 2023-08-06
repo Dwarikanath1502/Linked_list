@@ -59,7 +59,8 @@ Node *addOne(Node *head)
     }
     if (carry)
     {
-        Node *new_node = new Node(carry);
+        Node *new_node = new Node();
+        new_node->data = carry;
         new_node->next = head;
         head = new_node;
     }
