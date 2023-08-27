@@ -39,30 +39,27 @@ Node *removeDuplicate(Node *head)
     unordered_set<int> seen;
     Node *current = head;
 
-    if (current == NULL)
-    {
-        return head;
-    }
-    else
-    {
+//    base case
+    if(head == NULL){
+        return NULL;
+    }else{
         seen.insert(current->data);
     }
 
     while (current != NULL && current->next != NULL)
     {
-        // same
-        if (seen.find(current->next->data) != seen.end())
-        {
+        // element is already in list it is dup
+        if(seen.find(current->next->data)!= seen.end()){
             current->next = current->next->next;
-        }
-        else
-        {
-            // not same
+        }else{
             seen.insert(current->next->data);
             current = current->next;
         }
     }
     return head;
+    
+
+
 }
 
 void printList(Node *head)
