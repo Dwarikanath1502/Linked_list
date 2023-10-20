@@ -20,8 +20,8 @@ Node *sortList(Node *head)
 {
     Node *temp = head;
     int zeroCount = 0;
-    int oneCount = 1;
-    int twoCount = 2;
+    int oneCount = 0;
+    int twoCount = 0;
     while (temp != NULL)
     {
         if (temp->data == 0)
